@@ -29,8 +29,12 @@ class EGLogViewController: UIViewController{
     
     @IBAction func EGJuega(_ sender: Any) {
         if !EGJugador.text!.isEmpty{
-        
-               }else{
+        if !EG_User.siExiste(EGJugador.text!){
+            self.performSegue(withIdentifier: "StartGame", sender: nil)
+            EGJugador.text = ""
+        }else{
+            self.defecto(withTitle: "Duplicado", withMsg: "El usuario ya esta registrado")
+        }               }else{
                    self.defecto(withTitle: "El jugador??", withMsg: "No ingresaste el jugador compa")        }
     }
     
